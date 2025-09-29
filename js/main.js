@@ -24,6 +24,7 @@ function createNewTask() {
 
         // Clear the input box after adding the task
         inputBox.value = '';
+        saveData();
     }
 }
 
@@ -31,5 +32,15 @@ function deleteAllTasks() {
     // Remove all child elements from the unordered list
     while (todoList.firstChild) {
         todoList.removeChild(todoList.firstChild);
+        saveData();
     }
 }
+
+function saveData() {
+    localStorage.setItem("data", todoList.innerHTML);
+}
+
+function showTask() {
+    todoList.innerHTML = localStorage.getItem("data");
+}
+showTask()
